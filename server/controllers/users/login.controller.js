@@ -1,29 +1,32 @@
 import { readFileSync } from "fs";
-import { DbPath } from "../../utils/costants.js";
-import bcrypts from "bcryptjs";
+
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { DbPath } from "../../utils/costants.js";
 
 export const loginController = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
   const JsonResult = await readFileSync(DbPath, "utf-8");
   const db = JSON.parse(JsonResult);
 
-  const user = db.users.find((el) => el.username === username);
+  const user = db.users.find((el) => el.email === email);
 
-  console.log(password);
-
-  const isMatch = await bcrypts.compare(password, user.password);
-
-  const tokenSecret = "key";
-
-  if (!user || !isMatch) {
-    res.status(200).send("username or password is nothing");
-    return;
+  // Check if user exists
+  if (!user) {
+    return res.status(400).send("Username or password is wrong");
   }
 
-  const token = jwt.sign({ username }, tokenSecret, {
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(400).send("Username or password is wrong");
+  }
+
+  const tokenSecret = "key"; // Consider using an environment variable for this
+  const token = jwt.sign({ username: user.username }, tokenSecret, {
     expiresIn: "5m",
   });
-  res.status(200).send({ username, token });
+
+  res.status(200).send({ username: user.username, token });
 };

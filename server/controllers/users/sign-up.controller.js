@@ -4,35 +4,40 @@ import { DbPath } from "../../utils/costants.js";
 import bcrypts from "bcryptjs";
 
 export const SignupController = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, rePassword } = req.body;
+  console.log("Received data:", req.body);
 
-  if (!username || !email || !password) {
-    res.send("Invalid inputs").status(400);
-    return;
+  // Log input to check if username and email are received
+  console.log("Received data:", req.body);
+
+  if (password !== rePassword) {
+    return res.status(400).send("Passwords do not match");
   }
 
   const userId = uuid();
 
-  const JsonResult = await readFileSync(DbPath, "utf-8");
-  const db = JSON.parse(JsonResult);
-  const foundUser = db.users.find((el) => el.email === email);
-  if (foundUser) {
-    res.status(400).send("Already Registered Email");
-    return;
+  try {
+    const JsonResult = readFileSync(DbPath, "utf-8");
+    const db = JSON.parse(JsonResult);
+
+    const foundUser = db.users.find((el) => el.email === email);
+    if (foundUser) {
+      return res.status(400).send("User already exists");
+    }
+
+    const hashedPassword = bcrypts.hashSync(password, Number(process.env.SALT));
+
+    db.users.push({
+      userId,
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    writeFileSync(DbPath, JSON.stringify(db), "utf-8");
+    res.send("Successfully created the user");
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal server error");
   }
-
-  const hashedPassword = await bcrypts.hashSync(
-    password,
-    Number(process.env.SALT)
-  );
-
-  db.users.push({
-    userId,
-    username,
-    email,
-    password: hashedPassword,
-  });
-
-  await writeFileSync(DbPath, JSON.stringify(db), "utf-8");
-  res.send("Successfully created the users");
 };

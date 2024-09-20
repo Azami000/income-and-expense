@@ -1,16 +1,12 @@
 "use client";
 
-import React from "react";
-
-export const Button = () => {
+export const Button = ({ onClick, text }) => {
   return (
-    <div>
-      <input
-        type="text"
-        placeholder=""
-        className="input input-bordered w-full max-w-xs"
-        disabled
-      />
-    </div>
+    <button
+      onClick={onClick}
+      className="bg-blue-500 w-[200px] rounded-md text-white h-[30px] active:bg-blue-600"
+    >
+      {text}
+    </button>
   );
 };

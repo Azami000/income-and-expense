@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
-import { Question } from "@/components/Question";
+import { useRouter } from "next/navigation"; // Import useRouter here
 
+import { Question } from "@/components/Question";
+import Button from "@/components/Button";
 import Link from "next/link";
 import { Input1 } from "@/components/Input";
 import { Name } from "@/components/Name";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/Button";
 
 const LoginPage = () => {
   const [error, setError] = useState("");
@@ -15,7 +15,8 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const router = useRouter();
+
+  const router = useRouter(); // Move this line here
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,7 +30,7 @@ const LoginPage = () => {
         email: loginInput.email,
         password: loginInput.password,
       });
-      router.push("/user/confirm");
+      router.push("/confirm"); // Redirect after successful login
     } catch (error) {
       if (error.response) {
         setError(error.response.data || "An error occurred");
@@ -61,14 +62,12 @@ const LoginPage = () => {
             placeholder="Password"
             inputHandler={handleChange}
           />
-          {error && <div className="text-red-500">{error}</div>}{" "}
-          <Button onClick={login} text={"Log in"} />
+          {error && <div className="text-red-500">{error}</div>}
+          <Button onClick={login} />
         </div>
         <div className="flex gap-4 ">
-          <Question text="Don't have account?" className="text-black" />
-          <Link className="flex text-blue-400" href="/user/sign-up">
-            Sign up
-          </Link>
+          <Question text="Don't have an account?" className="text-black" />
+          <Link href="/user/sign-up">Sign up</Link>
         </div>
       </div>
       <div className="bg-blue-500 flex h-screen w-[50%]"></div>

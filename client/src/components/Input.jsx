@@ -2,12 +2,15 @@
 
 import React from "react";
 
-export const Input = (props) => {
+export const Input1 = ({ name, type, placeholder, inputHandler }) => {
   return (
-    <div>
-      {props.name}
-      {props.type}
-      {props.placeholder}
-    </div>
+    <input
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      onChange={inputHandler}
+      required
+      className="flex flex-col bg-gray-200 border rounded-md"
+    />
   );
 };
