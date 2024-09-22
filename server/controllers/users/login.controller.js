@@ -12,7 +12,6 @@ export const loginController = async (req, res) => {
 
   const user = db.users.find((el) => el.email === email);
 
-  // Check if user exists
   if (!user) {
     return res.status(400).send("Username or password is wrong");
   }
@@ -23,7 +22,7 @@ export const loginController = async (req, res) => {
     return res.status(400).send("Username or password is wrong");
   }
 
-  const tokenSecret = "key"; // Consider using an environment variable for this
+  const tokenSecret = "key";
   const token = jwt.sign({ username: user.username }, tokenSecret, {
     expiresIn: "5m",
   });

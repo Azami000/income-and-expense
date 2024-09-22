@@ -34,7 +34,7 @@ const LoginPage = () => {
       if (error.response) {
         setError(error.response.data || "An error occurred");
       } else {
-        setError("Network error, please try again later.");
+        setError("ali ng ni buruu bn");
       }
     }
   };
@@ -62,7 +62,9 @@ const LoginPage = () => {
             inputHandler={handleChange}
           />
           {error && <div className="text-red-500">{error}</div>}{" "}
-          <Button onClick={login} text={"Log in"} />
+          <div className="flex w-[370px] text-white">
+            <Button onClick={login} text={"Log in"} />
+          </div>
         </div>
         <div className="flex gap-4 ">
           <Question text="Don't have account?" className="text-black" />

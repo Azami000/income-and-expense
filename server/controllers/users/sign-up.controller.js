@@ -7,7 +7,6 @@ export const SignupController = async (req, res) => {
   const { username, email, password, rePassword } = req.body;
   console.log("Received data:", req.body);
 
-  // Log input to check if username and email are received
   console.log("Received data:", req.body);
 
   if (password !== rePassword) {

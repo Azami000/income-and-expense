@@ -75,12 +75,13 @@ const SignPage = () => {
               placeholder="Re-enter Password"
               inputHandler={handleChange}
             />
-
-            <Button text={"Sign up"} clickhandler={register} />
+            <div className="flex w-[370px] text-white">
+              <Button text={"Sign up"} clickhandler={register} />
+            </div>
           </form>
           <div className="flex gap-4 ">
             <Question text="Don't have account?" className="text-black" />
-            <Link className="flex bg-blue-400" href="/user/login">
+            <Link className="flex text-blue-500" href="/user/login">
               Log in
             </Link>
           </div>
