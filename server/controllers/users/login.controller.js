@@ -4,6 +4,10 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { DbPath } from "../../utils/costants.js";
 
+import env from "dotenv";
+
+env.config();
+
 export const loginController = async (req, res) => {
   const { email, password } = req.body;
 
@@ -22,10 +26,9 @@ export const loginController = async (req, res) => {
     return res.status(400).send("Username or password is wrong");
   }
 
-  const tokenSecret = "key";
-  const token = jwt.sign({ username: user.username }, tokenSecret, {
+  const token = jwt.sign({ userId: user.userId }, process.env.SECRET, {
     expiresIn: "5m",
   });
 
-  res.status(200).send({ username: user.username, token });
+  res.status(200).send({ userId: user.userId, token });
 };

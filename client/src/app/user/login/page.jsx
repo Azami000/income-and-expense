@@ -5,11 +5,13 @@ import { Question } from "@/components/Question";
 import Link from "next/link";
 import { Input1 } from "@/components/Input";
 import { Name } from "@/components/Name";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
+import { useUser } from "@/provider/UserProvider";
 
 const LoginPage = () => {
+  const { loginHandlerFunction } = useUser();
+
   const [error, setError] = useState("");
   const [loginInput, setLoginInput] = useState({
     email: "",
@@ -25,17 +27,10 @@ const LoginPage = () => {
   const login = async () => {
     setError("");
     try {
-      const res = await axios.post("http://localhost:8000/user/login", {
-        email: loginInput.email,
-        password: loginInput.password,
-      });
-      router.push("/user/confirm");
+      await loginHandlerFunction(loginInput.email, loginInput.password);
+      router.push("/user/currency");
     } catch (error) {
-      if (error.response) {
-        setError(error.response.data || "An error occurred");
-      } else {
-        setError("ali ng ni buruu bn");
-      }
+      setError("ali ng ni buruu bn");
     }
   };
 

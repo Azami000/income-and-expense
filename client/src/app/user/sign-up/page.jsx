@@ -3,7 +3,7 @@ import { Name } from "@/components/Name";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
+
 
 import { Question } from "@/components/Question";
 import { Button } from "@/components/Button";
@@ -28,10 +28,8 @@ const SignPage = () => {
     event.preventDefault();
     console.log("User input:", userInput);
     try {
-      const { data } = await axios.post(
-        "http://localhost:8000/user/sign-up",
-        userInput
-      );
+      await loginHandlerFunction(userInput);
+
       router.push("/user/login");
     } catch (error) {
       console.error("Registration error:", error);

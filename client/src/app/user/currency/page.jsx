@@ -1,10 +1,24 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import { Name } from "@/components/Name";
 import { Select } from "@/components/Select";
+import { useUser } from "@/provider/UserProvider";
+import { useState } from "react";
 
 const currencyPage = () => {
+  const { loginHandlerFunction } = useUser();
+  const router = useRouter();
+  const [currency, setCurrency] = useState({
+    currency: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCurrency((prev) => ({ ...prev, [name]: value }));
+  };
+  
+
   return (
     <div className="flex flex-col items-center justify-center gap-28">
       <div className="flex flex-col pt-10 items-center gap-12">
@@ -35,7 +49,7 @@ const currencyPage = () => {
           transaction in other currencies will be calculated based on this one{" "}
         </div>
         <div className="flex w-[370px] text-white">
-          <Button text={"Confirm"} />
+          <Button text={"Confirm"} onClick={cur} />
         </div>
       </div>
     </div>
