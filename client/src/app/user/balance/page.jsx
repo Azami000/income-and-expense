@@ -3,21 +3,16 @@
 import { Button } from "@/components/Button";
 import { Input1 } from "@/components/Input";
 import { Name } from "@/components/Name";
+import { Step } from "@/components/steps/step";
 
 import React from "react";
 
-export const balancePage = () => {
+export const balancePage = ({ confirmHandler, step }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-28">
       <div className="flex flex-col pt-10 items-center gap-12">
         <Name />
-        <div className="flex flex-row">
-          <ul className="steps steps-vertical lg:steps-horizontal">
-            <li className="step step-primary">Currancy</li>
-            <li className="step step-primary">Balance</li>
-            <li className="step ">Finish</li>
-          </ul>
-        </div>
+        <Step step={step} />
       </div>
       <div className="flex flex-col items-center justify-center w-[384px] gap-8">
         <div className="flex felx-col items-center justify-center">
@@ -31,7 +26,7 @@ export const balancePage = () => {
         </div>
         <div>How much cash do you have in your wallet?</div>
         <div className="flex w-[380px] text-white">
-          <Button text={"Confirm"} />
+          <Button text={"Confirm"} onClick={confirmHandler} />
         </div>
       </div>
     </div>

@@ -29,7 +29,6 @@ export const UserProvider = ({ children }) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
-      router.push("/user/currency");
     } else {
       setIsLoggedIn(false);
       router.push("/user/login");
