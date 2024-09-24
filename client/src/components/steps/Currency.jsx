@@ -1,8 +1,5 @@
 "use client";
 
-import React from "react";
-import { Name } from "../Name";
-import { Step } from "./Step";
 import { Select } from "../Select";
 import { Button } from "../Button";
 

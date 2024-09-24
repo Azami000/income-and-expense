@@ -39,11 +39,14 @@ const StepPage = () => {
   }
 
   return (
-    <div className="flex flex-col ">
-      <Name />
-      <Step step={step} />
-
-      <ChosenComponent confirmHandler={confirmHandler} step={step} />
+    <div className="flex flex-col justify-center items-center gap-24">
+      <div className="flex items-center gap-10 pt-8 flex-col">
+        <Name />
+        <Step step={step} />
+      </div>
+      <div>
+        <ChosenComponent confirmHandler={confirmHandler} step={step} />
+      </div>
     </div>
   );
 };

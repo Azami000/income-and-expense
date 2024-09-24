@@ -1,8 +1,5 @@
 "use client";
 
-import React from "react";
-import { Name } from "../Name";
-import { Step } from "./Step";
 import { Button } from "../Button";
 
 export const Finish = ({ confirmHandler }) => {

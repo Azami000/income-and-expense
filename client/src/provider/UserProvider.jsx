@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
-      router.push("/user/login");
+      // router.push("/user/login");
     }
   }, []);
 

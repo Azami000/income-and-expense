@@ -12,7 +12,7 @@ export const Header = () => {
         <div>Records</div>
       </div>
       <div className="flex gap-6">
-        <Button text={+Record} />
+        {/* <Button text={Record} /> */}
         <Avatar />
       </div>
     </div>

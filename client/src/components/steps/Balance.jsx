@@ -1,15 +1,11 @@
 "use client";
 
-import React from "react";
-import { Name } from "../Name";
-import { Step } from "./Step";
 import { Button } from "../Button";
 import { Input1 } from "../Input";
 
 export const Balance = ({ confirmHandler }) => {
   return (
     <div>
-      
       <div className="flex flex-col items-center justify-center w-[384px] gap-8">
         <div className="flex felx-col items-center justify-center">
           <div className="flex flex-col items-center gap-3">
