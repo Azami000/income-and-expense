@@ -9,7 +9,7 @@ const userRouter = Router();
 
 userRouter.route("/user/login").post(loginController);
 userRouter.route("/user/sign-up").post(SignupController);
-userRouter.post("/user/currency", authMiddleware, currencyController);
+userRouter.post("/step", authMiddleware, currencyController);
 userRouter.post("/user", authMiddleware, getUserInfo);
 
 export default userRouter;

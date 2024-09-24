@@ -8,6 +8,7 @@ export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState("");
   const router = useRouter();
 
   const loginHandlerFunction = async (email, password) => {
@@ -18,8 +19,10 @@ export const UserProvider = ({ children }) => {
       });
 
       window.localStorage.setItem("token", res.data.token);
+      setToken(res.data.token);
       setIsLoggedIn(true);
     } catch (error) {
+      setToken("");
       setIsLoggedIn(false);
       throw new Error(error.message);
     }
@@ -28,15 +31,17 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     if (token) {
+      setToken(token);
       setIsLoggedIn(true);
     } else {
+      setToken("");
       setIsLoggedIn(false);
-      // router.push("/user/login");
+      router.push("/user/login");
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, loginHandlerFunction }}>
+    <UserContext.Provider value={{ isLoggedIn, loginHandlerFunction, token }}>
       {children}
     </UserContext.Provider>
   );

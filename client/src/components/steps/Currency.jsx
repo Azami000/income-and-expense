@@ -3,7 +3,7 @@
 import { Select } from "../Select";
 import { Button } from "../Button";
 
-export const Currency = ({ confirmHandler }) => {
+export const Currency = ({ confirmHandler, inputHandler }) => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center w-[384px] gap-8">
@@ -14,6 +14,7 @@ export const Currency = ({ confirmHandler }) => {
           </div>
         </div>
         <Select
+          inputHandler={inputHandler}
           qustion={"MNT - Mongolian Tugrik"}
           text1={"MNT - Mongolian Tugrik"}
           text={"USD - US dollars"}

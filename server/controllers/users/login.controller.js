@@ -27,7 +27,7 @@ export const loginController = async (req, res) => {
   }
 
   const token = jwt.sign({ userId: user.userId }, process.env.SECRET, {
-    expiresIn: "5m",
+    expiresIn: "1h",
   });
 
   res.status(200).send({ userId: user.userId, token });

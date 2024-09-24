@@ -3,7 +3,7 @@
 import { Button } from "../Button";
 import { Input1 } from "../Input";
 
-export const Balance = ({ confirmHandler }) => {
+export const Balance = ({ confirmHandler, inputHandler }) => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center w-[384px] gap-8">
@@ -14,7 +14,11 @@ export const Balance = ({ confirmHandler }) => {
           </div>
         </div>
         <div className="w-[370px]">
-          <Input1 placeholder={"Balance"} />
+          <Input1
+            placeholder={"Balance"}
+            name={"balance"}
+            inputHandler={inputHandler}
+          />
         </div>
         <div>
           Your base currency should be the one you use most often. All

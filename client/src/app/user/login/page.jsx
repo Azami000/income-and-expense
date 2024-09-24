@@ -28,7 +28,7 @@ const LoginPage = () => {
     setError("");
     try {
       await loginHandlerFunction(loginInput.email, loginInput.password);
-      router.push("/user/currency");
+      router.push("/step");
     } catch (error) {
       setError("ali ng ni buruu bn");
     }

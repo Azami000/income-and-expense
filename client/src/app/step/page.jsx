@@ -8,19 +8,53 @@ import { Balance } from "@/components/steps/Balance";
 import { Finish } from "@/components/steps/Finish";
 import { Step } from "@/components/steps/Step";
 import { Name } from "@/components/Name";
+import axios from "axios";
+import { useUser } from "@/provider/UserProvider";
 
 const Conditionals = [Currency, Balance, Finish];
 
 const StepPage = () => {
+  const { token } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(0);
 
+  const [hello, setHello] = useState({
+    currency: "MNT - Mongolian Tugrik",
+    balance: "",
+  });
+
+  const inputHandler = async (event) => {
+    const name = event.target.name;
+    setHello((prev) => ({ ...prev, [name]: event.target.value }));
+  };
+  console.log(hello);
+
   const ChosenComponent = Conditionals[step];
 
-  const confirmHandler = () => {
-    if (step == 2) {
-      router.push("/");
+  const confirmHandler = async () => {
+    const token = window.localStorage.getItem("token");
+    if (step === 2) {
+      try {
+        await axios.post(
+          "http://localhost:8000/step",
+          {
+            currency: hello.currency,
+            balance: hello.balance,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        router.push("/dashboard");
+      } catch (error) {
+        console.error(error);
+
+        alert("Error: " + error.response.data.message || "Unauthorized");
+      }
       return;
     }
     setStep((prev) => prev + 1);
@@ -45,7 +79,11 @@ const StepPage = () => {
         <Step step={step} />
       </div>
       <div>
-        <ChosenComponent confirmHandler={confirmHandler} step={step} />
+        <ChosenComponent
+          confirmHandler={confirmHandler}
+          step={step}
+          inputHandler={inputHandler}
+        />
       </div>
     </div>
   );
