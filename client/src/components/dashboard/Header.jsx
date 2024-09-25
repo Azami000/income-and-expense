@@ -1,7 +1,7 @@
 "use client";
 
+import { Button } from "../Button";
 import { Avatar } from "./Avatar";
-import { Button } from "./Button";
 
 export const Header = ({ text }) => {
   return (

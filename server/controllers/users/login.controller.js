@@ -26,8 +26,8 @@ export const loginController = async (req, res) => {
     return res.status(400).send("Username or password is wrong");
   }
 
-  const token = jwt.sign({ userId: user.userId }, process.env.SECRET, {
-    expiresIn: "1h",
+  const token = jwt.sign({ userId: user.userId }, process.env.JWTF_SECRET, {
+    expiresIn: "1d",
   });
 
   res.status(200).send({ userId: user.userId, token });

@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
       throw new Error(error.message);
     }
   };
-
+// refresh hiihed baij bhad useeffect bichiv
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
     } else {
       setToken("");
       setIsLoggedIn(false);
-      router.push("/user/login");
+      // router.push("/user/login");
     }
   }, []);
 

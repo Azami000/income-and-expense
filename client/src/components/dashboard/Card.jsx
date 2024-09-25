@@ -1,6 +1,6 @@
 "use client";
 
-import { Name } from "./Name";
+import { Name } from "../Name";
 
 export const Card = () => {
   return (

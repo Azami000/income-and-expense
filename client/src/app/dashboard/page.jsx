@@ -1,9 +1,13 @@
 "use client";
 
-import { Card } from "@/components/Card";
-import { Chart } from "@/components/Chart";
-import { Header } from "@/components/Header";
-import { Inex } from "@/components/Inex";
+
+
+import { Card } from "@/components/dashboard/Card";
+import { Chart } from "@/components/dashboard/Chart";
+import { Header } from "@/components/dashboard/Header";
+import { Inex } from "@/components/dashboard/Inex";
+
+
 
 const mainPage = () => {
   return (
@@ -12,8 +16,16 @@ const mainPage = () => {
       <div className="flex flex-col bg-slate-100 py-4 px-28 gap-6">
         <div className="flex flex-row gap-6">
           <Card />
-          <Inex text={"Your income"} />
-          <Inex text={"Total Expenses"} />
+          <Inex
+            text={"Your income"}
+            amount={"1,200,000.00"}
+            zurag={"/income.png"}
+          />
+          <Inex
+            text={"Total Expenses"}
+            amount={"-1,200,000.00"}
+            zurag={"expense.png"}
+          />
         </div>
         <div className="flex flex-row">
           <Chart />

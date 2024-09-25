@@ -1,6 +1,6 @@
 "use client";
 
-export const Inex = ({ text }) => {
+export const Inex = ({ text, amount, zurag }) => {
   return (
     <div className="w-[384px] h-[216px] rounded-xl bg-white gap-7">
       <div className="flex  relative py-5 px-7 flex-row gap-3">
@@ -11,13 +11,15 @@ export const Inex = ({ text }) => {
       <div className="flex flex-col gap-4 py-5 px-6">
         <div className="flex flex-col gap-1">
           <div className="flex font-semibold text-2xl flex-row">
-            <div className="">1,200,000</div>
+            <div className="">{amount}</div>
             <div>₮</div>
           </div>
           <div className="flex text-gray-500">Your income amount</div>
         </div>
         <div className="flex flex-row gap-2">
-          <img src="/income.png" alt="" className="w-4 h-4 " />
+          <div className="w-4 h-4 ">
+            <img src={zurag} alt="" />
+          </div>
           <div>32% from last month</div>
         </div>
       </div>
