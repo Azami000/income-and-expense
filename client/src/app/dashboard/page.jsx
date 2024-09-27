@@ -1,13 +1,11 @@
 "use client";
 
-
-
 import { Card } from "@/components/dashboard/Card";
 import { Chart } from "@/components/dashboard/Chart";
 import { Header } from "@/components/dashboard/Header";
 import { Inex } from "@/components/dashboard/Inex";
-
-
+import { LastRecord } from "@/components/dashboard/LastRecord";
+import { Piechart } from "@/components/dashboard/Piechart";
 
 const mainPage = () => {
   return (
@@ -27,9 +25,11 @@ const mainPage = () => {
             zurag={"expense.png"}
           />
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-row gap-20">
           <Chart />
+          <Piechart />
         </div>
+        <LastRecord />
       </div>
     </div>
   );

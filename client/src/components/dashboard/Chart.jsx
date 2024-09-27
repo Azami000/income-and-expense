@@ -10,44 +10,40 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Label,
+  LabelList,
 } from "recharts";
 
 const data = [
   {
-    name: "January",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
+    name: "Jan",
+    expense: 4000,
+    income: 2400,
   },
   {
-    name: "February",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
+    name: "Feb",
+    expense: 3000,
+    income: 1398,
   },
   {
-    name: "March",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
+    name: "Mar",
+    expense: 4000,
+    income: 9800,
   },
   {
-    name: "April",
+    name: "Apr",
     uv: 2780,
-    pv: 3908,
-    amt: 2000,
+    income: 3908,
   },
   {
     name: "May",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
+    expense: 1890,
+    income: 4800,
   },
   {
     name: "June",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
+    expense: 2390,
+    income: 3800,
   },
 ];
 export const Chart = () => {
@@ -56,28 +52,17 @@ export const Chart = () => {
       <div className="flex border-b-2 py-4 px-6">
         <div>Income - Expense</div>
       </div>
-      <ResponsiveContainer>
-        <BarChart
-          width={500}
-          height={200}
-          data={data}
-        //   margin={{
-        //     top: 20,
-        //     right: 30,
-        //     left: 20,
-        //     bottom: 5,
-        //   }}
-        >
+      <div className="flex py-8 px-6">
+        <BarChart width={540} height={200} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-          <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-          <Tooltip />
-          <Legend />
-          <Bar yAxisId="left" dataKey="pv" fill="#8884d8" />
-          <Bar yAxisId="right" dataKey="uv" fill="#82ca9d" />
+          <XAxis dataKey="name">
+            <Label value="" offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis label={{ value: "", angle: -90, position: "insideLeft" }} />
+          <Bar dataKey="income" fill="#84CC16"></Bar>
+          <Bar dataKey="expense" fill="#F97316"></Bar>
         </BarChart>
-      </ResponsiveContainer>
+      </div>
     </div>
   );
 };
