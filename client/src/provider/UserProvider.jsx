@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
     } else {
       setToken("");
       setIsLoggedIn(false);
-      router.push("/user/login");
+      // router.push("/user/login");
     }
   }, []);
 
