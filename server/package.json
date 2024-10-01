@@ -8,6 +8,7 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.5",
     "bcryptjs": "^2.4.3",
     "chartjs": "^0.3.24",
     "cors": "^2.8.5",

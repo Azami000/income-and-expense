@@ -1,24 +1,18 @@
 import { readFileSync, writeFileSync } from "fs";
-import { DbPath } from "../../utils/costants.js";
+import { sql } from "../../database/index.js";
 
 export const currencyController = async (req, res) => {
   const { currency, balance } = req.body;
   const { userId } = res.locals;
 
-  const JsonResult = await readFileSync(DbPath, "utf-8");
-  const db = JSON.parse(JsonResult);
+  const [user] = await sql`SELECT * FROM users WHERE userid = ${userId}`;
 
-  const foundUser = db.users.find((element) => element.userId === userId);
-
-  if (!foundUser) {
+  if (!user) {
     res.status(404).send("user not found");
     return;
   }
 
-  foundUser.balance = balance;
-  foundUser.currency = currency;
-
-  await writeFileSync(DbPath, JSON.stringify(db), "utf-8");
+  await sql`UPDATE users SET currency = ${currency}, balance = ${balance} WHERE userid = ${userId}`;
 
   res.send("Success");
 };
