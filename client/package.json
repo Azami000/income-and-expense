@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "apexcharts": "^3.54.0",
     "axios": "^1.7.7",
     "chartjs": "^0.3.24",
     "cors": "^2.8.5",

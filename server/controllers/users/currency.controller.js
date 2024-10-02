@@ -1,4 +1,3 @@
-import { readFileSync, writeFileSync } from "fs";
 import { sql } from "../../database/index.js";
 
 export const currencyController = async (req, res) => {

@@ -20,7 +20,7 @@ const StepPage = () => {
   const [step, setStep] = useState(0);
 
   const [hello, setHello] = useState({
-    currency: "MNT - Mongolian Tugrik",
+    currency: "MNT",
     balance: "",
   });
 
@@ -53,7 +53,7 @@ const StepPage = () => {
       } catch (error) {
         console.error(error);
 
-        alert("Error: " + error.response.data.message || "Unauthorized");
+        // alert("Error: " + error.response.data.message || "Unauthorized");
       }
       return;
     }

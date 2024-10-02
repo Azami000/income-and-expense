@@ -7,7 +7,9 @@ import { Inex } from "@/components/dashboard/Inex";
 import { LastRecord } from "@/components/dashboard/LastRecord";
 import { Piechart } from "@/components/dashboard/Piechart";
 
-const mainPage = () => {
+const MainPage = async() => {
+
+
   return (
     <div className="">
       <Header />
@@ -34,4 +36,4 @@ const mainPage = () => {
     </div>
   );
 };
-export default mainPage;
+export default MainPage;

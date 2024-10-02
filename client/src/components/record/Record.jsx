@@ -1,6 +1,8 @@
 "use client";
 
 import { Button } from "../Button";
+import { Amount } from "./Amount";
+import { Category } from "./Category";
 import { Radio } from "./Radio";
 
 export const Record = () => {
@@ -20,6 +22,15 @@ export const Record = () => {
         />
       </div>
       <Radio />
+      <div>
+        <div className="flex ">
+          <div>Category</div>
+        </div>
+        <Category text={"Food $ Drinks"} />
+        <Category text={"Shopping"} />
+      </div>
+      <Amount />
     </div>
   );
+  x;
 };

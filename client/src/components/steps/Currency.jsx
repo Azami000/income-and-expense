@@ -15,10 +15,10 @@ export const Currency = ({ confirmHandler, inputHandler }) => {
         </div>
         <Select
           inputHandler={inputHandler}
-          qustion={"MNT - Mongolian Tugrik"}
-          text1={"MNT - Mongolian Tugrik"}
-          text={"USD - US dollars"}
-          texts={"KRW - Korean won"}
+          qustion={"MNT"}
+          text1={"MNT"}
+          text={"USD"}
+          texts={"KRW"}
         />
         <div>
           Your base currency should be the one you use most often. All

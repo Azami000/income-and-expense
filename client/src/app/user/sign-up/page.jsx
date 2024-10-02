@@ -4,14 +4,15 @@ import { Name } from "@/components/Name";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-
 import { Question } from "@/components/Question";
 import { Button } from "@/components/Button";
 import { Input1 } from "@/components/Input";
 import Link from "next/link";
+import axios from "axios";
 
 const SignPage = () => {
   const router = useRouter();
+
   const [userInput, setUserInput] = useState({
     email: "",
     password: "",
@@ -27,9 +28,10 @@ const SignPage = () => {
   const register = async (event) => {
     event.preventDefault();
     console.log("User input:", userInput);
-    try {
-      await loginHandlerFunction(userInput);
 
+    await axios.post("http://localhost:8000/user/sign-up", userInput);
+
+    try {
       router.push("/user/login");
     } catch (error) {
       console.error("Registration error:", error);

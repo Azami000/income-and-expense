@@ -6,7 +6,7 @@ export const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization;
   const jwtToken = token.split(" ")[1];
 
-  jwt.verify(jwtToken, process.env.SECRET, (err, suc) => {
+  jwt.verify(jwtToken, process.env.JWTF_SECRET, (err, suc) => {
     if (err) {
       res.status(401).send({ message: err.message });
       return;

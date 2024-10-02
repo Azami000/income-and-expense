@@ -1,6 +1,6 @@
-import { readFileSync, writeFileSync } from "fs";
+import { sql } from "../../database/index.js";
 import { v4 as uuid } from "uuid";
-import { DbPath } from "../../utils/costants.js";
+
 import bcrypts from "bcryptjs";
 
 export const SignupController = async (req, res) => {
@@ -14,26 +14,19 @@ export const SignupController = async (req, res) => {
   }
 
   const userId = uuid();
+  const createdAt = new Date();
 
   try {
-    const JsonResult = readFileSync(DbPath, "utf-8");
-    const db = JSON.parse(JsonResult);
-
-    const foundUser = db.users.find((el) => el.email === email);
+    const [foundUser] = await sql`SELECT * FROM users WHERE userid = ${userId}`;
     if (foundUser) {
       return res.status(400).send("User already exists");
     }
 
     const hashedPassword = bcrypts.hashSync(password, Number(process.env.SALT));
 
-    db.users.push({
-      userId,
-      username,
-      email,
-      password: hashedPassword,
-    });
+    await sql`INSERT INTO users(userId, username, email, password, createdAt) 
+    VALUES(${userId}, ${username}, ${email}, ${hashedPassword},${createdAt})`;
 
-    writeFileSync(DbPath, JSON.stringify(db), "utf-8");
     res.send("Successfully created the user");
   } catch (error) {
     console.error("Error:", error);

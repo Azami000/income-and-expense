@@ -2,7 +2,7 @@
 
 import { Name } from "../Name";
 
-export const Card = () => {
+export const Card = ({ amount }) => {
   return (
     <div className="flex relative">
       <img src="/card.png" alt="" className="w-[370px] " />
@@ -12,7 +12,7 @@ export const Card = () => {
 
       <div className="flex flex-col absolute left-6 bottom-7 ">
         <div className="text-gray-400">Cash</div>
-        <div className="flex  text-white ">100,00.00</div>
+        <div className="flex  text-white ">{amount}</div>
       </div>
     </div>
   );
